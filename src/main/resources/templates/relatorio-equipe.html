@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html
+xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Relatorio de equipe</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div>
+		<h1>Relatorio de equipe</h1>
+		<h2>Bem vindo ao sistema!</h2>
+		
+		 <ul class="nav navbar-nav">
+		    <li sec:authorize="hasAuthority('PG_PROJETOS')"><a href="/projetos">Projetos</a></li>
+		    <li sec:authorize="hasAuthority('PG_REL_CUSTOS')"><a href="/relatorio-custos">Relatório Custos</a></li>
+		    <li sec:authorize="hasAuthority('PG_REL_EQUIPE')"><a href="/relatorio-equipe">Relatório Equipe</a></li>
+		  </ul>
+		
+		  <form action="/logout" method="post">
+		  		<button type="submit">
+		  			sair
+		  		</button>
+		  		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">  		
+		  </form>
+	</div>
+</body>
+</html>

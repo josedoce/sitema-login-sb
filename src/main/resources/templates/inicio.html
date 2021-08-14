@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html
+xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Inicio</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div>
+		<h1>Inicio</h1>
+		<h2>Bem vindo ao sistema <span sec:authentication="name"></span> !</h2>
+		 Você tem acesso: <span sec:authentication="principal.authorities"></span>
+		 	<h3>Logado como</h3>
+		 	<ul>
+		 		<li><strong>nome: </strong><span th:text="${usuario.nome}"></span></li>
+		 		<li><strong>email: </strong><span th:text="${usuario.email}"></span></li>
+		 		<li><strong>regras: </strong><span th:text="${regras}"></span></li>
+		 	</ul>
+			 <ul class="nav navbar-nav">
+			    <li sec:authorize="hasAuthority('PG_PROJETOS')"><a href="/projetos">Projetos</a></li>
+			    <li sec:authorize="hasAuthority('PG_REL_CUSTOS')"><a href="/relatorio-custos">Relatório Custos</a></li>
+			    <li sec:authorize="hasAuthority('PG_REL_EQUIPE')"><a href="/relatorio-equipe">Relatório Equipe</a></li>
+			    <li sec:authorize="hasAuthority('regra1')"><a href="/relatorio-equipe">regra um rodando.</a></li>
+			  </ul>
+			  
+			  
+			  <form action="/logout" method="post">
+			  		<button type="submit">
+			  			sair
+			  		</button>
+			  		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">  		
+			  </form>
+	</div>
+</body>
+</html>
